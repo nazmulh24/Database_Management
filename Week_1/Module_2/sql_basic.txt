@@ -1,0 +1,64 @@
+
+create database nazmul; -- To create a database
+
+
+show databases; -- To show all databases
+
+
+use nazmul; -- Akhon nazmul database nia kaj korbe...
+
+
+-- Create a table 
+create table student(
+	roll char(4),
+	name varchar(20),
+	marks double
+);
+
+
+-- delete a table
+drop table student;
+
+
+
+use nazmul; -- Akhon nazmul database nia kaj korbe...
+
+-- Create a table with key
+create table student(
+	roll char(4) primary key,
+	name varchar(20),
+	marks double
+);
+
+
+-- Insert data into table...
+insert into student (roll, name, marks) 
+values
+	(1, "Nazmul", 90),
+	(2, "Hossain", 80),
+	(3, "Shadhin", 85),
+	(4, "Shahariar", 95);
+
+
+
+-- update korte hole safe mode off korte hobe...
+set sql_safe_updates = 0; -- Safe mode off
+
+-- update a data into a table...
+update student
+SET Name = "Shahriar"
+where roll = 4;
+
+-- update korar por safe mode on korte hobe...
+set sql_safe_updates = 1; -- Safe mode on
+
+
+-- table theke data delete korbe...
+-- eita korte holeu safe mode off korte hobe...
+delete from student
+where roll = 3;
+
+
+
+
+
