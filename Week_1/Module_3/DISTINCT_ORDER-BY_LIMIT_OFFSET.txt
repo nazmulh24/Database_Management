@@ -1,0 +1,49 @@
+
+Distinct -->
+    num --> 1, 2, 4, 2, 5, 4, 3
+    num --> 1, 2, 3, 4, 5 --> Dictinct
+
+Order By-->
+    Assending --> 1, 2, 3, 4, 5
+    Decending --> 5, 4, 3, 2, 1
+
+
+Limit --> 100 number er moddhe 10 ta limit
+Offset --> Koyta bad dibo
+
+
+---------------- Operation er Sequence 
+    SELECT
+    FROM
+    WHERE
+    ORDER BY
+    LIMIT
+    OFFSET
+
+
+
+-- Ki ki Designation ase ta khuje ber kora (Employee table theke)
+    SELECT distinct designation -- use of distinct keyword
+    FROM Employee;
+
+
+-- Age anusare name gulake sorting kora (Employee table theke)
+    SELECT name
+    FROM Employee
+    order by age asc;
+    --order by age desc;
+
+
+-- total 100 ta id er moddhe ---> 60 theke 10 ta id er name dekhte cai (Employee table theke)
+    SELECT name
+    FROM Employee
+    limit 10
+    offset 59;
+
+-- total 100 ta id er moddhe ---> 60 theke 10 ta id er name dekhte cai (Employee table theke)
+-- Alternative
+    SELECT name
+    FROM Employee
+    limit 59, 10;
+
+

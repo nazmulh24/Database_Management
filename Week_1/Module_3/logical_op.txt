@@ -1,0 +1,14 @@
+
+-- jader age < 30 but/and salary > 12000 tader name, salary dekhau (Employee table theke)
+SELECT name, salary
+FROM Employee
+where age < 30 and salary > 12000;
+
+
+-- jader age = 25 or salary > 15000 tader name, salary dekhau (Employee table theke)
+SELECT name, salary
+FROM Employee
+where age =25 or salary > 15000;
+
+
+

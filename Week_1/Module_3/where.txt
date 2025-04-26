@@ -1,0 +1,19 @@
+
+--  select operations with --> Schema Reference
+SELECT *
+FROM nazmul.student;
+
+
+-- jar age 12 tar all data dekhau (Student table theke)
+SELECT * 
+FROM student
+where age=12;
+
+
+-- jar age 13 tar email dekhau (Student table theke)
+SELECT email
+FROM student
+where age = 13;
+
+
+

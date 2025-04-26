@@ -1,0 +1,20 @@
+
+-- Way_1 to select operations
+select roll, name, email, address, age
+from student;
+
+
+-- Way_2 to select operations
+SELECT * 
+FROM student;
+
+
+-- Way_3 to select operations (Perticular column)
+SELECT roll, age
+FROM student;
+
+
+-- Way_4 to select operations with --> Schema Reference
+SELECT *
+FROM nazmul.student;
+

@@ -1,0 +1,6 @@
+
+-- jar roll 15 er kom tar all data dekhau (Student table theke)
+SELECT * 
+FROM Student
+where roll<15;
+

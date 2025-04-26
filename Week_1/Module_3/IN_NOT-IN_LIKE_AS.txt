@@ -1,0 +1,29 @@
+
+-- roll (102, 104, 106) ei list moddhe thakle kaj korbe... (Student table theke)
+    SELECT *
+    FROM Student
+    -- where roll = 102 or roll = 104 or roll = 106;  
+    where roll in (102, 104, 106); -- IN keyword
+
+
+-- roll (102, 104, 106) ei list moddhe na thakle kaj korbe... (Student table theke)
+    SELECT *
+    FROM Student
+    -- where roll != 102 or roll != 104 or roll != 106;  
+    where roll not in (102, 104, 106); -- NOT IN keyword
+
+
+-- 'Rahim' name jodi kothau mil pay...(Rahim Uddin // Mr. Rahim thakte pare)... (Student table theke)
+	-- Like Keyword er bebohar
+	SELECT *
+	FROM Student
+	-- where name ='Rahim' -- Exact Rahim mil pabe
+	where name like 'Rahim%'; -- Rohim er pore je kono kisu thakte pare
+	-- where name like '%Rahim'; -- Rohim er age je kono kisu thakte pare
+	-- where name like '%Rahim%'; -- Rohim er age-pore je kono kisu thakte pare
+
+
+-- akta table/column er nam onek boro thakle shortcut lekhar niyom... (Student table theke)
+	SELECT name as std_name -- as keyword er bebohar...
+	FROM Student;
+

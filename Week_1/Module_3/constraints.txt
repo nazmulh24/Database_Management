@@ -1,0 +1,69 @@
+
+use nazmul;
+
+
+-- Way to create table with constraints
+CREATE TABLE Student
+(
+	roll char(3) primary key,
+    name varchar(30) not null,
+    email varchar(40) unique,
+    address varchar(50),
+    age int check(age>10)
+);
+
+-- ALternative way to create table with constraints
+CREATE TABLE Student
+(
+	roll char(3),
+    name varchar(30) not null,
+    email varchar(40),
+    address varchar(50),
+    age int, 
+    primary key (roll),
+    -- not null (name) ---------> evabe likha jay na...
+    unique (email),
+    check(age>10)
+);
+
+-- ALternative way to create table with constraints
+CREATE TABLE Student
+(
+	roll char(3),
+    name varchar(30) not null,
+    email varchar(40),
+    address varchar(50),
+    age int,
+    -- onek somoy constraint name lage...kono error ase kina ta find korar jonno...constraint name thakle error a oi nam dekhabe...
+    constraint pk_rule primary key (roll), -- constraint with name
+    constraint unique (email), -- constraint without name
+    constraint check(age>10)
+);
+
+
+insert into Student(roll, name, email, address, age)
+values
+	-- ('001', "Nazmul", "nazmul@gmail.com", "Dhaka", 9); hobe na karon age = 9<10
+    ('002', "Nazmul", "nazmulh@gmail.com", "Dhaka", 15);
+
+
+-- Foreign key
+create table Library
+(
+	bookName varchar(50) primary key,
+    whoHired_roll char(3),
+    foreign key (whoHired_roll) references Student(roll)
+);
+
+
+-- Multiple Primary Key
+CREATE TABLE Course
+(
+	c_name varchar(20),
+    u_name varchar(15),
+    credit int,
+    
+    primary key(c_name, u_name)
+);
+
+

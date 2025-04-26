@@ -1,0 +1,6 @@
+
+-- jar roll 17 tar total mark dekhau (Marks table theke)
+SELECT (CSE+EEE) -- aro subject thekle + subject hoto...+, -, *, /, % sob kisu kora jay
+FROM Marks
+where roll=17;
+
