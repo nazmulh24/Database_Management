@@ -1,0 +1,44 @@
+1. What is the difference between Data and Information?
+    - Data: Raw, unprocessed facts and figures without context (e.g., "123", "John").
+    - Information: Processed, organized, and meaningful data (e.g., "John has a salary of $123").
+
+2. Describe Primary Key, Composite Primary Key, Foreign Key with example:
+    - Primary Key: A unique identifier for a record in a table (e.g., EmployeeId in an Employee table).
+    - Composite Primary Key: A primary key made up of two or more columns (e.g., OrderId and ProductId in an OrderDetails table).
+    - Foreign Key: A column in one table that references the primary key of another table (e.g., CustomerId in an Orders table referencing CustomerId in a Customers table).
+
+3. Five numeric type Data Types of MySQL:
+    - INT
+    - BIGINT
+    - FLOAT
+    - DOUBLE
+    - DECIMAL
+
+4. Create a table named Employee with EmployeeId, EmployeeName, EmployeeSalary, and JoiningDate:
+    a. Create table:
+    ```
+    sql
+    CREATE TABLE Employee (
+         EmployeeId INT PRIMARY KEY,
+         EmployeeName VARCHAR(100),
+         EmployeeSalary DECIMAL(10, 2),
+         JoiningDate DATE
+    );
+
+    ```
+
+    b. Insert 2 employee data:
+    ```
+    sql
+    INSERT INTO Employee (EmployeeId, EmployeeName, EmployeeSalary, JoiningDate)
+    VALUES (1, 'John Doe', 50000.00, '2023-01-01'),
+             (2, 'Jane Smith', 60000.00, '2023-02-01');
+    
+    ```
+
+    c. Delete 1 employee data:
+    ```
+    sql
+    DELETE FROM Employee WHERE EmployeeId = 1;
+    
+    ```
