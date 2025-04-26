@@ -1,0 +1,119 @@
+
+Database Management
+Assignment_1 Solutuion...
+By --> Nazmul Hossain...
+
+
+
+1 and 2 -->
+
+    create database nazmul;
+
+    use nazmul;
+
+    create table Student
+    (
+        std_id int primary key,
+        fName varchar(10),
+        lname varchar(10),
+        age int
+    );
+
+    create table Library
+    (
+        book_id int primary key,
+        book_name varchar(30),
+        author varchar(30),
+        studentd_id int,
+        foreign key(studentd_id) references Student(std_id)
+    );
+
+    create table Fees
+    (
+        fee_id int primary key,
+        std_id int,
+        amount decimal(10, 2),
+        foreign key(std_id) references Student(std_id)
+    );
+
+
+
+3 -->
+
+    Difference Between Data and Information:
+        •	Data is a collection of raw facts, figures, or symbols without any context. It alone has no meaning.
+        Example: Numbers like 85, names like Nazmul, or colors like Red are just data.
+
+        •	Information is processed, organized, or structured data that is meaningful and useful for making decisions.
+        Example: “Nazmul scored 85 in the test and prefers the color red” is information because it gives context and meaning to the data.
+
+    In short:
+        •	Data -> Raw and meaningless on its own.
+        •	Information -> Organized and meaningful data.
+
+
+
+4 -->
+
+    -- To perform an update, safe mode must be turned off...
+        set sql_safe_updates = 0; -- Safe mode off
+        set sql_safe_updates = 1; -- Safe mode on
+    -- After updating, safe mode must be turned on...
+
+    Example :
+        set sql_safe_updates = 0;
+        update student
+        SET Name = "Shahriar"
+        where roll = 4;
+        set sql_safe_updates = 1;
+
+
+
+5 -->
+
+    select distinct Depertment
+    from Employee;
+
+
+
+6 -->
+
+    select LastName
+    from Employee
+    order by Age desc;
+
+
+
+7 -->
+
+    select LastName
+    from Employee
+    where Age > 30
+        and Department = 'Marketing';
+
+
+
+8 -->
+
+    select *
+    from Employee;
+
+
+
+9 -->
+
+    select *
+    from Employee
+    where FirstName like '%son%'
+        or LastName like '%son%';
+
+
+
+10 -->
+
+    select *
+    from Employee
+    where Department = 'Engineering';
+
+
+
