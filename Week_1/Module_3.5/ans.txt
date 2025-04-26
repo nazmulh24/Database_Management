@@ -1,0 +1,40 @@
+
+Questions -->
+
+   1. Make an Employee Table where the fields are
+       a. EmpId
+       b. EmpName
+       c. Joining Year
+       d. Birthday (not after 2000)
+       e. Designation
+       f. Salary
+      Make this table with proper constraints
+
+   2. How to make composite primary key constraint? Show with example.
+   3. Can LIMIT+OFFSET features can be done using only LIMIT Syntax? How?
+
+
+Solution -->
+
+1. CREATE TABLE Employee (
+    EmpId INT PRIMARY KEY,
+    EmpName VARCHAR(100) NOT NULL,
+    JoiningYear YEAR NOT NULL,
+    Birthday DATE CHECK (Birthday <= '2000-12-31'),
+    Designation VARCHAR(50) NOT NULL,
+    Salary DECIMAL(10, 2) NOT NULL
+);
+
+2. CREATE TABLE ExampleTable (
+    Column1 INT,
+    Column2 INT,
+    Column3 VARCHAR(50),
+    PRIMARY KEY (Column1, Column2)
+);
+
+3. -- Yes, LIMIT+OFFSET can be done using only LIMIT syntax by calculating the sum of LIMIT and OFFSET.
+    SELECT * FROM TableName
+    LIMIT 10 OFFSET 5; -- Equivalent to:
+    SELECT * FROM TableName
+    LIMIT 15; -- Fetches rows from 1 to 15, then discard the first 5 rows programmatically.
+    
