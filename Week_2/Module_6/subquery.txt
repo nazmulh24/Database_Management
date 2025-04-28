@@ -1,0 +1,59 @@
+
+-- lex er theke besi salary k pay ...?
+    select *
+    from employees
+    where salary > (
+        select salary
+        from employees
+        where first_name = 'lex'
+        -- limit 1
+    );
+
+
+-- Highest salary k pay...?
+    select *
+    from employees
+    where salary = (
+        select max(salary)
+        from employees
+    );
+
+
+-- Marketing dept kara kara kaj kore...+ tader avg salary koto...?
+    select *
+    from employees
+    where department_id = (
+        select department_id
+        from departments
+        where department_name = 'Marketing'
+    );
+
+    select avg(salary)
+    from employees
+    where department_id = (
+        select department_id
+        from departments
+        where department_name = 'Marketing'
+    );
+
+
+-- IT dept koto jon kaj kore...?
+    select count(*) as members
+    from employees
+    where department_id = (
+        select department_id
+        from departments
+        where department_name = 'IT'
+    );
+
+
+-- Programmer der montly total salary koto...?
+    select sum(salary)
+    from employees
+    where job_id = (
+        select job_id
+        from jobs
+        where job_title = 'Programmer'
+    );
+
+

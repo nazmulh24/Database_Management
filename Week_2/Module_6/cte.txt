@@ -1,0 +1,49 @@
+
+CTE --> Common Table Expressions (WITH AS)
+
+
+
+...je name result save korte cai...
+            |
+    with _abc_ as
+    (
+        query
+    )
+    select *
+    from _abc_
+
+example:
+        with temp as
+        (
+            select *
+            from employees
+            limit 5
+        )
+        select *
+        from temp;
+
+
+
+
+-- It_dept er avg salary theke besi + merkating_dept er max salary theke kom salary pay...
+-- avg_it, mx_mrkt --> table akare data store kore...
+
+    with avg_it as
+        (
+            select avg(salary) as sal1
+            from employees
+            where department_id = 60 -- IT
+        ),
+    mx_mrkt as
+        (
+            select max(salary) as sal2
+            from employees
+            where department_id = 20 -- Merkating
+        )
+    select *
+    from employees
+    where salary > (select sal1 from avg_it) 
+    and salary < (select sal2 from mx_mrkt);
+
+
+

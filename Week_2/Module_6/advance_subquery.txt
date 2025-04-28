@@ -1,0 +1,44 @@
+
+-- 2nd Highest Salary koto + k pay...?
+way_1:
+        select *
+        from employees
+        where salary = (
+            select distinct salary
+            from employees
+            order by salary desc
+            limit 1, 1
+        );
+way_2:
+        select *
+        from employees
+        where salary = (
+            select max(salary)
+            from employees
+            where salary < (
+                select max(salary)
+                from employees
+            )
+        );
+
+
+-- Kon kon employee tader maneger er theke besi salary pay...?
+        select *
+        from employees as emp
+        where salary > (
+            select salary
+            from employees as mngr
+            where emp.manager_id = mngr.employee_id
+        );
+
+
+-- Kon kon employee tader maneger er moto same job kore...?
+        select *
+        from employees as emp
+        where job_id = (
+            select job_id
+            from employees as mngr
+            where emp.manager_id = mngr.employee_id
+        );
+
+
