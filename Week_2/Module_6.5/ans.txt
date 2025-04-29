@@ -1,61 +1,95 @@
 
 --> 1. Determine the third highest salary and which employee receives it
 solution :
-
-    SELECT DISTINCT first_name, salary
-    FROM Employees
-    ORDER BY salary DESC
-    LIMIT 1 OFFSET 2;
-or,
-    
-select *
-from employees
-where salary = (
-	select max(salary)
-	from employees
-	where salary < (
-		select max(salary)
-		from employees
+    select *
+    from employees
+    where salary = (
+        select max(salary)
+        from employees
         where salary < (
-			select max(salary)
-			from employees
-		)
-	)
-);
-
+            select max(salary)
+            from employees
+            where salary < (
+                select max(salary)
+                from employees
+            )
+        )
+    );
 
 
 
 --> 2. Determine the third lowest salary and which employee receives it
+solution :
+    select *
+    from employees
+    where salary = (
+        select min(salary)
+        from employees
+        where salary > (
+            select min(salary)
+            from employees
+            where salary > (
+                select min(salary)
+                from employees
+            )
+        )
+    );
 
-SELECT employee_name, salary
-FROM (
-    SELECT employee_name, salary, DENSE_RANK() OVER (ORDER BY salary ASC) AS rank
-    FROM employees
-) ranked
-WHERE rank = 3;
 
--- 3. Which employee has been hired after Steven?
-SELECT employee_name, hire_date
-FROM employees
-WHERE hire_date > (
-    SELECT hire_date
-    FROM employees
-    WHERE employee_name = 'Steven'
-);
 
--- 4. With common table expression solve the question 1 and 2
-WITH RankedSalaries AS (
-    SELECT employee_name, salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rank_desc,
-           DENSE_RANK() OVER (ORDER BY salary ASC) AS rank_asc
-    FROM employees
-)
--- Third highest salary
-SELECT employee_name, salary
-FROM RankedSalaries
-WHERE rank_desc = 3;
+--> 3. Which employee has been hired after Steven?
+solution :
+        SELECT *
+        FROM employees
+        WHERE hire_date > (
+            SELECT MAX(hire_date)
+            FROM employees
+            WHERE first_name = 'Steven'
+        );
 
--- Third lowest salary
-SELECT employee_name, salary
-FROM RankedSalaries
-WHERE rank_asc = 3;
+
+
+--> 4. With common table expression solve the question 1 and 2
+solution :
+    a -->
+        WITH Max1 AS (
+            SELECT MAX(salary) AS sal 
+            FROM employees
+        ),
+        Max2 AS (
+            SELECT MAX(salary) AS sal 
+            FROM employees 
+            WHERE salary < (SELECT sal FROM Max1)
+        ),
+        Max3 AS (
+            SELECT MAX(salary) AS sal 
+            FROM employees 
+            WHERE salary < (SELECT sal FROM Max2)
+        )
+        SELECT *
+        FROM employees
+        WHERE salary = (SELECT sal FROM Max3);
+
+
+
+    b -->
+        WITH Min1 AS (
+            SELECT MIN(salary) AS sal 
+            FROM employees
+        ),
+        Min2 AS (
+            SELECT MIN(salary) AS sal 
+            FROM employees 
+            WHERE salary > (SELECT sal FROM Min1)
+        ),
+        Min3 AS (
+            SELECT MIN(salary) AS sal 
+            FROM employees 
+            WHERE salary > (SELECT sal FROM Min2)
+        )
+        SELECT *
+        FROM employees
+        WHERE salary = (SELECT sal FROM Min3);
+
+
+        
