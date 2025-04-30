@@ -1,0 +1,19 @@
+-- 1. Show the employee names and corresponding job_titles without using JOIN query
+    SELECT employee_name, job_title
+    FROM employees;
+
+-- 2. Do the question no 1 using JOIN query
+    SELECT e.employee_name, j.job_title
+    FROM employees e
+    JOIN jobs j ON e.job_id = j.job_id;
+
+-- 3. Show the name of the employee and the job_title who receives the maximum salary
+    SELECT e.employee_name, j.job_title
+    FROM employees e
+    JOIN jobs j ON e.job_id = j.job_id
+    WHERE e.salary = (SELECT MAX(salary) FROM employees);
+
+-- 4. Show the list of employee name and corresponding manager names
+    SELECT e.employee_name AS employee, m.employee_name AS manager
+    FROM employees e
+    LEFT JOIN employees m ON e.manager_id = m.employee_id;
