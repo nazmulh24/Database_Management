@@ -1,0 +1,14 @@
+
+--> if i want to delete a p_k and also want to delete in f_k...
+then,
+    FOREIGN KEY(key_name)
+    References _____________
+    ON DELETE CASCADE
+
+
+--> if i want to delete a p_k and also want to not delete all data in f_k but set null...
+then,
+    FOREIGN KEY(key_name)
+    References _____________
+    ON DELETE SET NULL
+
