@@ -1,0 +1,76 @@
+
+1 -->
+    question_1_ERD.png
+
+
+2 -->
+    INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate)
+    SELECT 5, CourseID, CURRENT_DATE
+    FROM Course
+    ORDER BY Credits DESC
+    LIMIT 1;
+
+
+3 -->
+    UPDATE Course
+    SET InstructorID = NEW_INSTRUCTOR_ID
+    WHERE CourseID = 3;
+
+
+4 --> 
+    SELECT I.Name, SUM(C.Credits) AS TotalCredits
+    FROM Instructor I
+    JOIN Course C ON I.InstructorID = C.InstructorID
+    GROUP BY I.InstructorID
+    ORDER BY TotalCredits DESC
+    LIMIT 1;
+
+
+5 --> 
+    SELECT S.Name, COUNT(E.CourseID) AS CourseCount
+    FROM Student S
+    JOIN Enrollment E ON S.StudentID = E.StudentID
+    GROUP BY S.StudentID
+    HAVING COUNT(E.CourseID) > 2;
+
+
+6 -->
+    question_2_ERD.png
+
+
+7 -->
+    -- GROUP BY --> Groups rows with same values.
+    SELECT Department, COUNT(*) 
+    FROM Instructor 
+    GROUP BY Department;
+
+    -- ORDER BY --> Sorts results.
+    SELECT * 
+    FROM Instructor 
+    ORDER BY Name ASC;
+
+
+8 -->
+    SELECT MAX(Salary) AS 2nd_Highest_Salary
+    FROM Instructor
+    WHERE Salary < (
+        SELECT MAX(Salary) 
+        FROM Instructor
+    );
+
+
+9 -->
+CREATE TABLE Course (
+    CourseID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Credits INT NOT NULL,
+    InstructorID INT,
+    FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID) ON DELETE CASCADE
+);
+
+
+10 -->
+-- Most challenging topic :
+    -- JOIN querys
+    -- KEY Mapping
+    -- GROUP BY, ORDER BY
